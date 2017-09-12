@@ -8,7 +8,7 @@
 <link href="css/base.css" rel="stylesheet" type="text/css">
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="__PUBLIC__/js/jquery.js"></script>
-<script src="__PUBLIC__/js/switch/jquery.SuperSlide.js"></script>
+<script src="__TPL__/js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
 <body>
 <!--#include file="head.html"-->
@@ -19,23 +19,23 @@
             <div id="m-sld" class="m-sld s-box">
                     <div class="hd">
                         <ul>
-                        <!--list{app="DhCms" label="contentList" sub="true" image="true" pos_id="1" order="class_id desc,time asc" dhname="幻灯片的循环序号"}-->
-                        <li>{$list.i}</li>
-                        <!--{/list}-->
+							<!--list{app="DhCms" label="contentList" limit=5 image=true}-->
+							<li>{$list.i}</li>
+							<!--{/list}-->
                         </ul>
                     </div>
                     <div class="bd">
                         <ul>
-                        	<!--list{app="DhCms" label="contentList" limit="5" order="class_id desc" dhname="幻灯片的循环内容"}-->
+                        	<!--list{app="DhCms" label="contentList" limit="5" order="class_id desc"}-->
                             <li><a href="{$list.aurl}" target="_blank"><img src="{cut_image($list.image,270,270)}" width="270" height="270"   /></a></li>
                             <!--{/list}-->
                         </ul>
                         
                     </div>
                 </div>
-                
+
 			<div class="m-top-new s-box">
-            	<!--list{app="DhCms" label="contentList" sub="true" pos_id="1" limit="1" order="class_id desc" dhname="幻灯片右侧文章第一条"}-->
+            	<!--list{app="DhCms" label="contentList" sub="true" pos_id="1" limit="1" order="class_id desc"}-->
 				<div class="m-hot">
 					<div class="tt"><a href="{$list.aurl}">{$list.title}</a> <span>推荐置顶</span></div>
 					<div class="dsc">{$list.description}</div>
@@ -43,7 +43,7 @@
                 <!--{/list}-->
 				<div class="m-hot-lst">
 					<ul>
-                        <!--list{app="DhCms" label="contentList" sub="true" pos_id="1" limit="1,5" order="class_id desc" dhname="幻灯片右侧文章第二条"}-->
+                        <!--list{app="DhCms" label="contentList" sub="true" pos_id="1" limit="1,5" order="class_id desc"}-->
 						<li><a href="{$list.aurl}">{$list.title}</a><span>{date('Y-m-d',$list['time'])}</span></li>
 						<!--{/list}-->
 					</ul>
@@ -54,17 +54,17 @@
 		<div class="u-sep10"></div>
 		<div class="m-ad"><img src="images/ad-1.jpg" width="670" height="90"></div>
 		<div class="g-md">
-            <!--class{app="Article" label="categoryList" type="1" limit="4" dhname="中部分类文章调用"}-->
+            <!--class{app="Article" label="categoryList" type="1" limit="4"}-->
 			<div class="m-news">
 				<div class="tt"><a href="{$class.curl}">{$class.name} </a><span><a href="{$class.curl}">more</a></span></div>                
-                <!--list{app="DhCms" label="contentList" class_id=$categoryInfo['class_id'] image="false" limit="1" order="class_id desc" dhname="循环的第一篇带图片的文章"}-->
+                <!--list{app="DhCms" label="contentList" class_id=$categoryInfo['class_id'] image="false" limit="1" order="class_id desc"}-->
 				<div class="hot"><a href="{$list.aurl}"><img src="{$list.image}" width="70" height="48" alt="{$list.aurl}"></a><a href="{$list.aurl}">{$list.title}</a>
 					<div class="f-cb"></div>
 				</div>
 				<!--{/list}-->
 				<div class="lst">
 					<ul>
-                        <!--list{app="DhCms" label="contentList" class_id=$class['class_id'] limit="5" order="class_id desc" dhname="循环的后五篇文章"}-->
+                        <!--list{app="DhCms" label="contentList" class_id=$class['class_id'] limit="5" order="class_id desc"}-->
 						<li><a href="{$list.aurl}">{$list.title}</a><span>{date('Y-m-d',$list['time'])}</span></li>
 						<!--{/list}-->
 					</ul>
@@ -77,7 +77,7 @@
 	<div class="g-sd">
 		<div class="m-sdc">
 			<div class="tt">模板说明</div>
-			<div class="ct"><!--echo{app="DhCms" label="fragment" dhname="右侧模板说明"}--></div>
+			<div class="ct"><!--echo{app="DhCms" label="fragment"}--></div>
 		</div>
 		<!--#include file="sidebar.html"-->
 	</div>

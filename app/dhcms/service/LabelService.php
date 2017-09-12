@@ -265,6 +265,7 @@ class LabelService{
         if(!empty($list)){
             foreach ($list as $key => $value) {
                 $data[$key]=$value;
+				$data[$key]['i'] = $key;
                 foreach ($fieldList as $v) {
                     $data[$key][$v['field']] = target('dhcms/FieldData')->revertField($value[$v['field']],$v['type'],$v['config']);
                 }
@@ -277,7 +278,7 @@ class LabelService{
 	/**
      * 表单名称调用
      */
-    public function fname($data){
+    public function formName($data){
         if(empty($data['name'])){
             return ;
         }
@@ -289,7 +290,49 @@ class LabelService{
         }
         return $info['name'];
     }
-
+	
+	/**
+     * 选择类表单字段配置项调用
+     */
+    public function formSelectConfig($data)
+    {
+        if(empty($data['table']) || empty($data['field'])){
+            return array();
+        }
+        //获取表单信息
+        $where = array();
+        $where['table'] = $data['table'];
+        $formInfo = target('dhcms/FieldsetForm')->getWhereInfo($where);
+        if(empty($formInfo)){
+            return array();
+        }
+        //字段信息
+        $where = array();
+        $where['A.fieldset_id'] = $formInfo['fieldset_id'];
+		$where['A.field'] = $data['field'];
+        $fieldInfo = target('dhcms/FieldForm')->getWhereInfo($where);
+		//解析配置
+		$config = explode(",",$fieldInfo['config']);
+		if(empty($config)){
+			return array();
+		}
+		$default = explode(",",$fieldInfo['default']);
+		$data = array();
+		foreach($config as $key => $value){
+			$data[$key]['title'] = $value;
+			$data[$key]['value'] = $key+1;
+			$data[$key]['default'] = 0;
+			$data[$key]['i'] = $key;
+			foreach($default as $key1 => $value1){
+				if($value1 == $key+1){
+					$data[$key]['default'] = 1;
+					break;
+				}
+			}
+		}
+        return $data;
+    }
+	
 	/**
      * 查询当天访问量
      */
