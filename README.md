@@ -1,3 +1,7 @@
+模板开发手册地址
+
+https://www.kancloud.cn/shaogong/dhcms/402242
+
 DhCms是一款基于PHP/MYSQL开发的、专攻中小内容的高效率管理系统；
 
 DhCms具有良好的兼容性，可完美运行在Window平台和Linux平台，支持Apache、Nginx、IIS，新版兼容IE8+、Chrome、Firefox、Safari、Opera等现代浏览器;
