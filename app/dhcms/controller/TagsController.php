@@ -25,6 +25,7 @@ class TagsController extends SiteController {
         $this->assign('media', $media);
         $this->assign('pageList',$list);
         $this->assign('page',$this->getPageShow());
+		$this->assign('pageInfo',$this->getPage());
         $this->siteDisplay(config('tpl_tags').'_list');
     }
 

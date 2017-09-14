@@ -62,8 +62,10 @@ class SearchController extends SiteController {
                 $list[$key]['aurl']=target('dhcms/Content')->getUrl($value);
             }
         }
-        //获取分页
+        //获取HTML分页
         $page = $this->getPageShow($pageMaps);
+		//获取分页
+		$pageInfo = $this->getPage($pageMaps);
         //位置导航
         $crumb = array(array('name'=>'文章搜索 - ' . $keyword,'url'=>url('index',$pageMaps)));
         //MEDIA信息
@@ -73,8 +75,9 @@ class SearchController extends SiteController {
         $this->assign('media', $media);
         $this->assign('pageList',$list);
         $this->assign('page',$page);
+		$this->assign('pageInfo', $pageInfo);
         $this->assign('count', $count);
         $this->assign('keyword', $keyword);
-         $this->siteDisplay(config('tpl_search').'_article');
+        $this->siteDisplay(config('tpl_search').'_article');
     }
 }

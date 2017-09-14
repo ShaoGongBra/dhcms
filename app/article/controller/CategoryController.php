@@ -96,8 +96,10 @@ class CategoryController extends SiteController {
         $pageMaps = array();
         $pageMaps['class_id'] = $classId;
         $pageMaps['urlname'] = $urlName;
-        //获取分页
+        //获取HTML分页
         $page = $this->getPageShow($pageMaps);
+		//获取分页
+		$pageInfo = $this->getPage($pageMaps);
         //查询上级栏目信息
         $parentCategoryInfo = target('dhcms/Category')->getInfo($categoryInfo['parent_id']);
         //获取顶级栏目信息
@@ -111,6 +113,7 @@ class CategoryController extends SiteController {
         $this->assign('crumb', $crumb);
         $this->assign('pageList', $pageList);
         $this->assign('page', $page);
+		$this->assign('pageInfo', $pageInfo);
         $this->assign('media', $media);
         $this->assign('pageMaps', $pageMaps);
         $this->assign('condition', $condition);
@@ -216,8 +219,10 @@ class CategoryController extends SiteController {
         $pageMaps = array();
         $pageMaps['class_id'] = $classId;
         $pageMaps['urlname'] = $urlName;
-        //获取分页
+        //获取HTML分页
         $page = $this->getPageShow($pageMaps);
+		//获取分页
+		$pageInfo = $this->getPage($pageMaps);
         //查询上级栏目信息
         $parentCategoryInfo = target('dhcms/Category')->getInfo($categoryInfo['parent_id']);
         //获取顶级栏目信息
@@ -231,6 +236,7 @@ class CategoryController extends SiteController {
         $this->assign('crumb', $crumb);
         $this->assign('pageList', $pageList);
         $this->assign('page', $page);
+		$this->assign('pageInfo', $pageInfo);
         $this->assign('media', $media);
         $this->assign('pageMaps', $pageMaps);
         $this->assign('condition', $condition);

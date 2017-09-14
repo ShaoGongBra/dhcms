@@ -84,12 +84,52 @@ class SiteController extends BaseController {
                 $html .= ' href="'.$this->createPageUrl($map,$mustParams,$value).'">'.$value.'</a>';
            }
            $html .='</div>';
-        if ($pageArray['page'] = $pageArray['lastPage']) {
+        if ($pageArray['page'] == $pageArray['lastPage']) {
             $html .='<span class="PreSpan next-page">下一页</span>';
         }else{
             $html .='<a href="'.$this->createPageUrl($map,$mustParams,$pageArray['nextPage']).'" >下一页</a>';
         }
-         $html .= '<a class="NextA" href="'.$this->createPageUrl($map,$mustParams,$pageArray['lastPage']).'">末页</a>';
+        $html .= '<a class="NextA" href="'.$this->createPageUrl($map,$mustParams,$pageArray['lastPage']).'">末页</a>';
         return $html;
     }
+	//分页独立显示
+    protected function getPage($map = array(), $mustParams = array())
+    {
+        $pageArray = $this->pager;
+        if ($pageArray['totalPage']<2) {
+           return;
+        }
+		$page = array();
+		//上一页
+		if ($pageArray['page'] != $pageArray['firstPage']) {
+			$page['prev_page'] = $this->createPageUrl($map,$mustParams,$pageArray['prevPage']);
+		}
+		//下一页
+		if($pageArray['page'] != $pageArray['lastPage']){
+			$page['next_page'] = $this->createPageUrl($map,$mustParams,$pageArray['nextPage']);
+		}
+		//首页
+		if ($pageArray['page'] != $pageArray['firstPage']) {
+			$page['first_page'] = $this->createPageUrl($map,$mustParams,$pageArray['firstPage']);
+		}
+		//末页
+		if($pageArray['page'] != $pageArray['lastPage']){
+			$page['last_page'] = $this->createPageUrl($map,$mustParams,$pageArray['lastPage']);
+		}
+		//页码
+		foreach ($pageArray['allPages'] as $key => $value) {
+			if($value == 0){
+				continue;
+			}
+			$page['all_pages'][$key]['url'] = $this->createPageUrl($map,$mustParams,$value);
+			$page['all_pages'][$key]['page'] = $value;
+			if($value == $pageArray['page']){
+				$page['all_pages'][$key]['hover'] = 1;
+			}else{
+				$page['all_pages'][$key]['hover'] = 0;
+			}
+	    }
+        return $page;
+    }
+	
 }
